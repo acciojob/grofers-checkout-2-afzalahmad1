@@ -1,6 +1,6 @@
 //your code here
 function calculateTotal() {
-  const prices = document.querySelectorAll('[data-ns-test="prices"]');
+  const prices = document.querySelectorAll('[data-ns-test="price"]');
   let total = 0;
   prices.forEach(price => {
     const priceValue = parseFloat(price.textContent.replace('$', ''));
@@ -15,7 +15,7 @@ function calculateTotal() {
 calculateTotal();
 
 // Listen for changes to the prices and recalculate the total
-const prices = document.querySelectorAll('[data-ns-test="prices"]');
+const prices = document.querySelectorAll('[data-ns-test="price"]');
 prices.forEach(price => {
   const observer = new MutationObserver(mutations => {
     calculateTotal();
