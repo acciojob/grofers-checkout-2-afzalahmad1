@@ -1,24 +1,14 @@
-//your code here
-function calculateTotal() {
-  const prices = document.querySelectorAll('[data-ns-test="price"]');
-  let total = 0;
-  prices.forEach(price => {
-    const priceValue = parseFloat(price.textContent.replace('$', ''));
-    if (!isNaN(priceValue)) {
-      total += priceValue;
-    }
-  });
-  const grandTotal = document.querySelector('[data-ns-test="grandTotal"]');
-  grandTotal.textContent = '$' + total.toFixed(2);
-}
+const table = document.querySelector('table');
+ const lastRow = document.createElement('tr');
+ const prices = document.querySelectorAll('[data-ns-test=price]');
+ let sum = 0;
+ for(let i = 0; i < prices.length; i++) {
+  sum += parseInt(prices[i].textContent);
+ }
+ const child = document.createElement("td");
+ child.setAttribute('data-ns-test', 'grandTotal');
 
-calculateTotal();
 
-// Listen for changes to the prices and recalculate the total
-const prices = document.querySelectorAll('[data-ns-test="price"]');
-prices.forEach(price => {
-  const observer = new MutationObserver(mutations => {
-    calculateTotal();
-  });
-  observer.observe(price, { characterData: true, subtree: true });
-});
+ child.textContent = sum;
+ lastRow.appendChild(child);
+ table.appendChild(lastRow);
